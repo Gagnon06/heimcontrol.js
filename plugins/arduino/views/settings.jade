@@ -27,6 +27,7 @@ div.container
                 option(value="sensor",      selected=(item.method == 'sensor'))   sensor
                 option(value="irremote",    selected=(item.method == 'irremote')) IR remote
                 option(value="led",         selected=(item.method == 'led'))      LED
+                option(value="rf-led",      selected=(item.method == 'rf-led'))   RF LED
               div.switch-container
 
                 div.rcswitch(class=(item.method != 'rcswitch' ? 'hidden' : ''))
