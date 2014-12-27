@@ -27,7 +27,7 @@ div.container
                 option(value="sensor",      selected=(item.method == 'sensor'))   sensor
                 option(value="irremote",    selected=(item.method == 'irremote')) IR remote
                 option(value="led",         selected=(item.method == 'led'))      LED
-                option(value="rf-led",      selected=(item.method == 'rf-led'))   RF LED
+                option(value="rfled",      selected=(item.method == 'rfled'))   RF LED
               div.switch-container
 
                 div.rcswitch(class=(item.method != 'rcswitch' ? 'hidden' : ''))
@@ -71,7 +71,11 @@ div.container
                   input.uppercase(type="text", name="data[#{i}][ircode]", placeholder="F0F2A3A2", data-required="1", value=(item.ircode ? item.ircode : ''), pattern="^[A-F0-9]*$")
                   label(for="addr") Length:
                   input(type="text", name="data[#{i}][irlength]", placeholder="48", data-required="1", value=(item.irlength ? item.irlength : ''))
-
+                
+                div.sensor(class=(item.method != 'rfled' ? 'hidden' : ''))
+                  label(for="receiver") Receiver
+                  input(type="text", name="data[#{i}][receiver]", placeholder="code", data-required="3", value=(item.receiver ? item.receiver : ''))
+                  
             input(type="hidden", name="data[#{i}][_id]", value="#{item._id}")
             input(type="hidden", name="data[#{i}][status]", value="#{item.status}")
           
