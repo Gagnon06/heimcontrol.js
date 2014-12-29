@@ -21,13 +21,14 @@ define([ 'duino' ], function(duino) {
     this.id = this.name.toLowerCase();
 
     this.board = new duino.Board();
-    // this.board.debug = true;
+    this.board.debug = true;
     function warnNoDuino(e) {
         console.warn("[WARNING] error while trying to connect to Arduino:")
         console.warn(" >>> " + e);
         console.info("[INFO] continuing and hoping for the best...");
         // FIXME: we should disable this plugin in some way, though
     }
+    this.board.baseCode = "123";
     this.board.on('error', warnNoDuino);
     this.board.setup();
 
@@ -38,7 +39,9 @@ define([ 'duino' ], function(duino) {
 
     this.sensorList = [];
     this.sensors = {};
-
+    
+    this.receivers = {};
+      
     this.init();
 
     var that = this;
@@ -59,6 +62,9 @@ define([ 'duino' ], function(duino) {
       // Arduino toggle
       socket.on('arduino-led', function(data) {
         that.led(data);
+      });
+      socket.on('arduino-rfled', function(data) {
+        that.rfled(data);
       });
     });
     
@@ -168,6 +174,55 @@ define([ 'duino' ], function(duino) {
       }
     });
   };
+    
+    
+ /**
+   * Turn an RF LED light on / off
+   * 
+   * @method rfled
+   * @param {Object} data The websocket data from the client
+   * @param {String} data.id The ID of the database entry from the LED to use
+   * @param {String} data.value The value to set (0 (off) or 1 (on))
+   */
+  Arduino.prototype.rfled = function(data) {
+
+    var that = this;
+    this.pluginHelper.findItem(that.collection, data.id, function(err, item, collection) {
+      if ((!err) && (item)) {
+        // Inform clients over websockets
+        that.app.get('sockets').emit('arduino-rfled', data);
+
+        item.value = (parseInt(data.value));
+        that.values[item._id] = item.value;
+        
+        // Create receiver
+        if(!that.receivers[item.receiver]) {
+            that.receivers[item.receiver] = {};
+        }
+          
+        // Create LED object
+        if (!that.receivers[item.receiver].pins[item.pin]) {
+          that.receivers[item.receiver].pins[item.pin] = new duino.Led({
+            board: that.board,
+            rf: true,
+            pin: parseInt(item.pin),
+            receiver: item.receiver
+          });
+        }
+
+        // Change LED status
+        if(item.value == "1"){
+          that.receivers[item.receiver].pins[item.pin].on();
+        }else {
+          that.receivers[item.receiver].pins[item.pin].off();
+        }
+      } else {
+        console.log(err);
+      }
+    });
+  };
+    
+    
 
   /**
    * Initialize the sensors attached to the Arduino

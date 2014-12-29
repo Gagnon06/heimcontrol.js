@@ -27,7 +27,7 @@ div.container
                 option(value="sensor",      selected=(item.method == 'sensor'))   sensor
                 option(value="irremote",    selected=(item.method == 'irremote')) IR remote
                 option(value="led",         selected=(item.method == 'led'))      LED
-                option(value="rfled",      selected=(item.method == 'rfled'))   RF LED
+                option(value="rfled",      selected=(item.method == 'rfled'))     RF LED
               div.switch-container
 
                 div.rcswitch(class=(item.method != 'rcswitch' ? 'hidden' : ''))
@@ -72,8 +72,8 @@ div.container
                   label(for="addr") Length:
                   input(type="text", name="data[#{i}][irlength]", placeholder="48", data-required="1", value=(item.irlength ? item.irlength : ''))
                 
-                div.sensor(class=(item.method != 'rfled' ? 'hidden' : ''))
-                  label(for="receiver") Receiver
+                div.rfled(class=(item.method != 'rfled' ? 'hidden' : ''))
+                  label(for="receiver") Receiver:
                   input(type="text", name="data[#{i}][receiver]", placeholder="code", data-required="3", value=(item.receiver ? item.receiver : ''))
                   
             input(type="hidden", name="data[#{i}][_id]", value="#{item._id}")
@@ -106,6 +106,7 @@ div.plugin-container.arduino.settings#template(style="display: none;")
       option(value="sensor") sensor
       option(value="irremote") IR remote
       option(value="led") LED
+      option(value="rfled") RF LED
     div.switch-container
 
       div.rcswitch.hidden
@@ -151,5 +152,9 @@ div.plugin-container.arduino.settings#template(style="display: none;")
         input.uppercase(type="text", name="data[%i%][ircode]", placeholder="F0F2A3A2", data-required="1", pattern="^[A-F0-9]*$")
         label(for="addr") Length:
         input(type="text", name="data[%i%][irlength]", placeholder="48", data-required="1")
+
+      div.rfled.hidden
+        label(for="receiver") Receiver:
+        input(type="text", name="data[%i%][receiver]", placeholder="code", data-required="3")
 
     input(type="hidden", name="data[%i%][status]", value="0")
