@@ -1,0 +1,4 @@
+{
+  "title": "Wake-on-LAN Plugin",
+  "template": "plugins/wakeonlan.jade"
+}

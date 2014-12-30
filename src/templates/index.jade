@@ -1,0 +1,67 @@
+extends layout
+
+block content
+  header.jumbotron.subhead#overview
+    h1 heimcontrol.js
+    p.lead Awesome home automation with Raspberry PI and Arduino using Node.js, MongoDB, HTML5 and Websockets.
+    img.shadow.title(src="#{url}img/heimcontrol.jpg", alt="heimcontrol")
+    
+  div.row
+    span.span3
+      h3 
+        i.icon-mobile-phone
+        | &nbsp;Responsive
+      p The responsive design allows you comfortable control of your home devices using your smartphone or tablet.
+    span.span3
+      h3 
+        i.icon-globe
+        | &nbsp;Everywhere
+      p Open your Raspberry PI to the world and access your home automation app from everywhere in the world.
+    span.span3
+      h3 
+        i.icon-signin
+        | &nbsp;Extendable
+      p An elaborated plugin system makes it easy to extend the application with your own plugins.
+
+  section.features
+    h2.page-header Features
+    | heimcontrol.js was created to gain experience in Node.js, MongoDB, Websockets and a lot of other great technologies that were used in the project. Take a look in the&nbsp;
+    code package.json
+    | &nbsp;for a full list of used open source projects. The project is in active development and a very early prototype, so use it at your own risk! 
+    div.row
+      span.span5
+        h3 Hardware
+        ul
+          li Full access to the GPIO of the Raspberry Pi
+          li Communication with an attached Arduino
+          li Wake-on-LAN (not really hardware, but at least it wakes up hardware)
+          li Stream your webcam via socket.io
+      span.span5
+        h3 Software
+        ul
+          li Node.js, Socket.io, Expressjs, Requirejs
+          li HTML5, CSS3 and Websockets
+          li Jade templating
+          li Responsive design
+
+  section.apps
+    h2.page-header Apps
+    ul
+      li Heimdroid (Android Application): 
+        a(href="http://jorism.github.io/Heimdroid/") http://jorism.github.io/Heimdroid/
+        
+  section.video
+    h2.page-header Video
+    iframe(width="960",height="720",src="https://www.youtube-nocookie.com/embed/7wqY1NFETPg?rel=0",frameborder="0",allowfullscreen="true")
+  section.screenshots
+    h2.page-header Screenshots
+    img(src="img/screenshot.png", alt="Screenshot")
+  section.visible-desktop
+    h3.page-header Responsive Design
+    p Responsive design allows you to control your home with your smartphone.
+    div.row
+      span.span6
+        img.shadow(src="img/responsive-1.png", alt="Responsive Design")
+      span.span4
+        img.shadow(src="img/responsive-2.png", alt="Responsive Design")
+    

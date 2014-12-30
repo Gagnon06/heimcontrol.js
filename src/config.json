@@ -1,0 +1,8 @@
+{
+  "locals": {
+    "url": "/heimcontrol.js/",
+    "name": "heimcontrol.js"
+  },
+  "baseUrl": "/heimcontrol.js/",
+  "output": "../"
+}

@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+  header.jumbotron.subhead#overview
+    h1 GPIO Plugin
+    p.lead Control the GPIO ports on your Raspberry PI 
+    
+  section.about
+    h2.page-header About
+    p The GPIO plugin is able to control the GPIO ports of the Raspberry PI. It uses the great&nbsp;
+      a(href="https://github.com/rakeshpai/pi-gpio") pi-gpio
+      | &nbsp;tool to access the GPIO pins of the Raspberry Pi.
+    
+  section.installation 
+    h2.page-header Installation
+    p To get around being root to access the Raspberry Pi's GPIO pins, you should use&nbsp;
+      a("https://github.com/quick2wire/quick2wire-gpio-admin") quick2wire-gpio-admin
+      | :
+    script(src="https://gist.github.com/ni-c/1242b3fe7b4645a0c7b4.js")
+    
+  section.api
+    h2.page-header API
+    h3.page-header The following API methods are available:
+    h4.page-header POST /api/login
+    p Request:
+      script(src="https://gist.github.com/ni-c/a153284761d014bcc8ce.js")
+    p Response:
+      script(src="https://gist.github.com/ni-c/0d34be300f6f45429bc6.js")
+    h4.page-header GET /api/gpio
+    p Request:
+      script(src="https://gist.github.com/ni-c/506410412ea4db719428.js")
+    p Response:
+      script(src="https://gist.github.com/ni-c/12e6715c645ad2833a38.js")
